@@ -3,5 +3,7 @@
   "haskell.serverExecutablePath": "D:\\ghcup\\bin\\hls.exe",
   "haskell.formatting.provider": "ormolu",
   "haskell.plugin.ghcide-completions.config.autoExtendOn": true,
-  "files.associations": { "*.hs": "haskell" }
+  "files.associations": {
+    "*.hs": "haskell"
+  }
 }
