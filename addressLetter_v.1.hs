@@ -1,3 +1,5 @@
+import Language.Haskell.TH (location)
+
 addressLetter name location = nameText ++ " - " ++ location
   where
     nameText = (fst name) ++ " " ++ (snd name)
@@ -23,3 +25,10 @@ nyOffice name = nameText ++ ": PO Box 789 - New York, NY, 10013"
 renoOffic name = nameText ++ " - PO Box 456 - Reno, NV 89523"
   where
     nameText = snd name
+
+-- get location function
+getLocationFunction location = case location of
+  "ny" -> nyOffice
+  "sf" -> sfOffice
+  "reno" -> renoOffic
+  _ -> (\name -> (fst name) ++ " " ++ (snd name))
