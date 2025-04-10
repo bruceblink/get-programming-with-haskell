@@ -1,0 +1,7 @@
+{
+  // 指定 HLS 可执行文件的路径（如果你的 HLS 不在 PATH 中，可手动配置）
+  "haskell.serverExecutablePath": "D:\\ghcup\\bin\\hls.exe",
+  "haskell.formatting.provider": "ormolu",
+  "haskell.plugin.ghcide-completions.config.autoExtendOn": true,
+  "files.associations": { "*.hs": "haskell" }
+}
