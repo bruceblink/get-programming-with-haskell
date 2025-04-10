@@ -32,3 +32,7 @@ getLocationFunction location = case location of
   "sf" -> sfOffice
   "reno" -> renoOffic
   _ -> (\name -> (fst name) ++ " " ++ (snd name))
+
+addressLetter2 name location = locationFunction name
+  where
+    locationFunction = getLocationFunction location
