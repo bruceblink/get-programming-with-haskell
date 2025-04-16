@@ -5,3 +5,8 @@ robot (name, attack, hp) = \message -> (name, attack, hp)
 name (n, _, _) = n
 attack (_, a, _) = a
 hp (_, _, hp) = hp
+
+-- 添加访问器函数
+getName aRobot = aRobot name
+getAttack aRobot = aRobot attack
+getHP aRobot = aRobot hp
