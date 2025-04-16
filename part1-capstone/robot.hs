@@ -1,5 +1,5 @@
 -- robot的构造函数,有3个属性
-robot (name, attack, hp) = \message -> (name, attack, hp)
+robot (name, attack, hp) = \message -> message (name, attack, hp)
 
 -- 添加获取对象属性的辅助函数
 name (n, _, _) = n
@@ -17,4 +17,10 @@ setAttack aRobot newAttack = aRobot (\(n,a,h) -> robot (n, newAttack, h))
 setHP aRobot newHP = aRobot (\(n,a,h) -> robot (n, a, newHP))
 
 -- 添加打印状态的函数(类比 Java中的toString)
-printRobot aRobot = aRobot (\(n, a, h) -> n ++ " attack: " ++ (show a) ++ " hp:" ++ (show h))
+printRobot aRobot = aRobot (\(n, a, h) -> n ++ 
+                                        " attack: " ++ (show a) ++ 
+                                        " hp:" ++ (show h))
+
+-- 添加damage函数
+damage aRobot attackDamage = aRobot (\(n, a, h) -> 
+                                       robot (n, a, h-attackDamage))
