@@ -15,3 +15,6 @@ getHP aRobot = aRobot hp
 setName aRobot newName = aRobot (\(n,a,h) -> robot (newName, a, h))
 setAttack aRobot newAttack = aRobot (\(n,a,h) -> robot (n, newAttack, h))
 setHP aRobot newHP = aRobot (\(n,a,h) -> robot (n, a, newHP))
+
+-- 添加打印状态的函数(类比 Java中的toString)
+printRobot aRobot = aRobot (\(n, a, h) -> n ++ " attack: " ++ (show a) ++ " hp:" ++ (show h))
