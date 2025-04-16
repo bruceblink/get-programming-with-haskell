@@ -10,3 +10,5 @@ drink aCup ozDrank = if ozDiff >= 0 -- 杯中的饮品容量最小为0,不能无
                      else cup 0
     where flOz = getOz aCup
           ozDiff = flOz - ozDrank
+-- 判断cup的容量是否为空
+isEmpty aCup = getOz aCup == 0
