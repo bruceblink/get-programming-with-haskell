@@ -24,3 +24,9 @@ printRobot aRobot = aRobot (\(n, a, h) -> n ++
 -- 添加damage函数
 damage aRobot attackDamage = aRobot (\(n, a, h) -> 
                                        robot (n, a, h-attackDamage))
+
+-- 定义fight函数
+fight aRobot defender = damage defender attack
+    where attack = if getHP aRobot > 10
+                   then getAttack aRobot
+                   else 0
