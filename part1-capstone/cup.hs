@@ -5,6 +5,8 @@ cup flOz = \message -> message flOz -- 添加命名参数的cup"构造函数"
 getOz aCup = aCup (\f10z -> f10z)  --添加对象访问器(成员函数)
 
 -- drink message 更新cup的状态
-drink aCup ozDrank = cup (f10z - ozDrank)  -- drink message 更新cup的状态
-  where f10z = getOz aCup  -- 获取对象原先的状态
-
+drink aCup ozDrank = if ozDiff >= 0 -- 杯中的饮品容量最小为0,不能无限
+                     then cup ozDiff
+                     else cup 0
+    where flOz = getOz aCup
+          ozDiff = flOz - ozDrank
