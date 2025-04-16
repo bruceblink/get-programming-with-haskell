@@ -6,7 +6,12 @@ name (n, _, _) = n
 attack (_, a, _) = a
 hp (_, _, hp) = hp
 
--- 添加访问器函数
+-- 添加get访问器函数
 getName aRobot = aRobot name
 getAttack aRobot = aRobot attack
 getHP aRobot = aRobot hp
+
+-- 添加set访问器函数
+setName aRobot newName = aRobot (\(n,a,h) -> robot (newName, a, h))
+setAttack aRobot newAttack = aRobot (\(n,a,h) -> robot (n, newAttack, h))
+setHP aRobot newHP = aRobot (\(n,a,h) -> robot (n, a, newHP))
