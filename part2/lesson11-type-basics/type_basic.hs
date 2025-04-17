@@ -26,3 +26,10 @@ testScores = [0.99, 0.7, 0.8]
 letters :: [Char]
 letters = ['a', 'b', 'c']
 
+-- String和Char List
+
+aPet :: [Char]
+aPet = "cat"
+
+anotherPet :: String
+anotherPet = "dog"
