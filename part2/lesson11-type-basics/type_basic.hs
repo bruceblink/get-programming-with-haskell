@@ -1,5 +1,4 @@
 module Lesson11 where
-import Distribution.Compat.CharParsing (letter)
 x :: Int
 x = 2
 
