@@ -74,3 +74,28 @@ data Patient = Patient Name Sex Int Int Int BloodType
 
 johnDoe :: Patient
 johnDoe = Patient (Name "John" "Doe") Male 30 74 200 (BloodType AB Pos)
+
+-- getName, getAge, getBloodType
+getName :: Patient -> Name 
+getName (Patient n _ _ _ _ _) = n 
+getAge :: Patient -> Int 
+getAge (Patient _ _ a _ _ _) = a 
+getBloodType :: Patient -> BloodType 
+getBloodType (Patient _ _ _ _ _ bt) = bt
+
+-- Patient v.2 (with record syntax)
+data Patient2 = Patient2 { name :: Name 
+                       , sex :: Sex 
+                       , age :: Int 
+                       , height :: Int 
+                       , weight :: Int
+                       , bloodType :: BloodType }
+
+jackieSmith :: Patient2
+jackieSmith = Patient2 {name = Name "Jackie" "Smith"
+                      , age = 43 
+                      , sex = Female 
+                      , height = 62 
+                      , weight = 115
+                      , bloodType = BloodType O Neg }
+
