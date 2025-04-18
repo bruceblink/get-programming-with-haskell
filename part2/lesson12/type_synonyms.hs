@@ -69,3 +69,8 @@ showName :: Name -> String
 showName (Name f l) = f ++ " " ++ l
 showName ((NameWithMiddle f m l)) = f ++ " " ++ m ++ " " ++ l
 
+-- Patient v.1
+data Patient = Patient Name Sex Int Int Int BloodType
+
+johnDoe :: Patient
+johnDoe = Patient (Name "John" "Doe") Male 30 74 200 (BloodType AB Pos)
