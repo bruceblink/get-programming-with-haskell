@@ -33,5 +33,25 @@ instance Eq SixSidedDie where
     (==) S1 S1 = True
     (==) _ _ = True
 
+-- 复杂类型
+
+{- type Name = (String,String)
+names :: [Name]
+names = [ ("Emil","Cioran"), ("Eugene","Thacker"), ("Friedrich","Nietzsche")] -}
+-- 为别名类型 实现Ord
+{- 
+instance Ord Name where
+    compare (f1, l1) (f2, l2) = compare (l1, f1) (l2, f2) -}
+-- 定义新的类型type using data
+data Name = Name (String, String) deriving (Show, Eq)
+
+-- 为Name 实现 Ord
+instance Ord Name where
+    compare (Name (f1, l1)) (Name (f2, l2)) = compare (l1, f1) (l2, f2)
+names :: [Name]
+names = [Name ("Emil","Cioran"), 
+         Name ("Eugene","Thacker"), 
+         Name ("Friedrich","Nietzsche")
+        ]
 
 
