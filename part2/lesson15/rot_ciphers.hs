@@ -57,3 +57,14 @@ threeLetterDecoder :: [ThreeLetterAlphabet] -> [ThreeLetterAlphabet]
 threeLetterDecoder vals = map rot3ldecoder vals
   where alphaSzie = 1 + fromEnum (maxBound :: ThreeLetterAlphabet)
         rot3ldecoder = rotNdecoder alphaSzie
+
+
+-- 使用 `rotEncoder` 和 `rotDecoder` 旋转字符串
+rotEncoder :: String -> String
+rotEncoder text = map rotChar text  -- 旋转字符串中的所有字符
+
+rotDecoder :: String -> String
+rotDecoder text = map rotChar text
+  where alphaSize = 1 + fromEnum (maxBound :: Char)
+        rotChar = rotN alphaSize
+
