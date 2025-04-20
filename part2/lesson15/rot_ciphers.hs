@@ -30,4 +30,17 @@ fourLetterAlphabetEncoder vals = map rot4l vals
   where alphaSize = 1 + fromEnum (maxBound :: FourLetterAlphabet)
         rot4l = rotN alphaSize
 
+-- 3字母字母表的消息和编码器
+data ThreeLetterAlphabet = Alpha | Beta | Kappa deriving (Show, Enum, Bounded)
+threeLetterMessage :: [ThreeLetterAlphabet]
+threeLetterMessage = [Alpha,Alpha,Beta,Alpha,Kappa]
+threeLetterEncoder :: [ThreeLetterAlphabet] -> [ThreeLetterAlphabet]
+threeLetterEncoder vals = map rot3l vals
+  where alphaSize = 1 + fromEnum (maxBound :: ThreeLetterAlphabet)
+        rot3l = rotN alphaSize
+
+fourLetterMessage :: [FourLetterAlphabet]
+fourLetterMessage = [L1, L3, L4, L1, L1, L2]
+
+
 
