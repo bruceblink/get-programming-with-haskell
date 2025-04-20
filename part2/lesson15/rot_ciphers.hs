@@ -1,5 +1,6 @@
 module Lesson15 where
 import GHC.Internal.Text.Read (Lexeme(Char))
+import Language.Haskell.TH (fromE)
 --  定义四字母的字母表
 data FourLetterAlphabet = L1 | L2 | L3 | L4 deriving (Show, Enum, Bounded)
 
@@ -51,3 +52,8 @@ rotNdecoder n c = toEnum rotation
                 else 1 + fromEnum c + halfN
         rotation = offset `mod` n
 
+--一个适用于 ThreeLetterAlphabet的有效解码器
+threeLetterDecoder :: [ThreeLetterAlphabet] -> [ThreeLetterAlphabet]
+threeLetterDecoder vals = map rot3ldecoder vals
+  where alphaSzie = 1 + fromEnum (maxBound :: ThreeLetterAlphabet)
+        rot3ldecoder = rotNdecoder alphaSzie
