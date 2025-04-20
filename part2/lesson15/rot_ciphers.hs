@@ -42,5 +42,12 @@ threeLetterEncoder vals = map rot3l vals
 fourLetterMessage :: [FourLetterAlphabet]
 fourLetterMessage = [L1, L3, L4, L1, L1, L2]
 
-
+-- 一个适用于奇数个字母的 rotN 解码器
+rotNdecoder :: (Bounded a, Enum a) => Int -> a -> a 
+rotNdecoder n c = toEnum rotation 
+  where halfN = n `div` 2
+        offset = if even n
+                then fromEnum c + halfN
+                else 1 + fromEnum c + halfN
+        rotation = offset `mod` n
 
