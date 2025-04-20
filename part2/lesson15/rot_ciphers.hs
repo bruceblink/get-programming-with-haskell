@@ -68,3 +68,16 @@ rotDecoder text = map rotChar text
   where alphaSize = 1 + fromEnum (maxBound :: Char)
         rotChar = rotN alphaSize
 
+
+-- 定义 xor 函数
+xorBool :: Bool -> Bool -> Bool
+xorBool value1 value2 = (value1 || value2) && (not (value1 && value2))
+-- 最简洁的方式是 value1 /= value2 
+
+-- xorPair to xor pairs of Bools
+xorPair :: (Bool, Bool) -> Bool
+xorPair (v1, v2) = xorBool v1 v2
+
+-- xor的最终版
+xor :: [Bool] -> [Bool] -> [Bool]
+xor list1 list2 = map xorPair (zip list1 list2)  -- 注意这里zip的用法,不熟悉的可以去查一下相关文档
