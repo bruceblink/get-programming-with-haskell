@@ -122,3 +122,29 @@ bitsToInt bits = sum (map (\x -> 2^(snd x)) trueLocations)
 -- 通过从 `toEnum` 返回来完成bitsToChar转换。
 bitsToChar :: Bits -> Char
 bitsToChar bits = toEnum (bitsToInt bits)
+
+-- 简单密码本
+myPad :: String
+myPad = "Shhhhhh"
+
+-- 明文
+myPlainText :: String
+myPlainText = "Haskell"
+
+-- applyOTP' 用于使用一次性密码本将字符串转换为比特
+applyOTP' :: String -> String -> [Bits]
+applyOTP' pad plaintext = map (\pair -> 
+                                (fst pair) `xor` (snd pair))
+                          (zip padBits plaintextBits)
+  where padBits = map charToBits pad
+        plaintextBits = map charToBits plaintext
+
+-- 最后，应用 `applyOTP` 使用一次性密码本编码字符串。
+applyOTP :: String -> String -> String
+applyOTP pad plaintext = map bitsToChar bitList
+    where bitList = applyOTP' pad plaintext
+
+-- 使用部分函数创建编码/解码器
+encoderDecoder :: String -> String
+encoderDecoder = applyOTP myPad
+
