@@ -2,6 +2,7 @@
 module Lesson15 where
 import GHC.Internal.Text.Read (Lexeme(Char))
 import Language.Haskell.TH (fromE)
+import Data.Array (indices)
 --  定义四字母的字母表
 data FourLetterAlphabet = L1 | L2 | L3 | L4 deriving (Show, Enum, Bounded)
 
@@ -97,7 +98,27 @@ intToBits' n = if (remainder == 0)
                else True : intToBits' nextVal
   where remainder = n `mod` 2
         nextVal = n `div` 2   
+-- `maxBits` 和你的最终 `intToBits` 函数
+maxBits :: Int
+maxBits = length (intToBits' maxBound)
+intToBits :: Int -> Bits
+intToBits n = leadingFalses ++ reverseBits
+    where reverseBits = reverse (intToBits' n)
+          missingBits = maxBits - (length reverseBits)
+          leadingFalses = take missingBits (cycle [False])
 
 -- 实现 chatToBits 将char 转换成Bits
 charToBits :: Char -> Bits
-charToBits char = intToBits' (fromEnum char) 
+charToBits char = intToBits (fromEnum char)
+
+-- 将bit位转换为数字int
+bitsToInt :: Bits -> Int
+bitsToInt bits = sum (map (\x -> 2^(snd x)) trueLocations)
+    where size = length bits
+          indices = [size-1, size -2 ..0]
+          trueLocations = filter (\x -> fst x == True)
+                          (zip bits indices)
+
+-- 通过从 `toEnum` 返回来完成bitsToChar转换。
+bitsToChar :: Bits -> Char
+bitsToChar bits = toEnum (bitsToInt bits)
