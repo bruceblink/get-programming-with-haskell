@@ -1,3 +1,4 @@
+{-# LANGUAGE BlockArguments #-}
 module Lesson15 where
 import GHC.Internal.Text.Read (Lexeme(Char))
 import Language.Haskell.TH (fromE)
@@ -81,3 +82,22 @@ xorPair (v1, v2) = xorBool v1 v2
 -- xor的最终版
 xor :: [Bool] -> [Bool] -> [Bool]
 xor list1 list2 = map xorPair (zip list1 list2)  -- 注意这里zip的用法,不熟悉的可以去查一下相关文档
+
+-- convert an Int type to Bits
+-- Define the type alias (optional, you can use [Bool] directly)
+type Bits = [Bool]
+
+-- This is the function definition line
+intToBits' :: Int -> Bits
+-- This is the start of the equation body, with guards indented
+intToBits' 0 = [False]
+intToBits' 1 = [True]
+intToBits' n = if (remainder == 0)
+               then False : intToBits' nextVal
+               else True : intToBits' nextVal
+  where remainder = n `mod` 2
+        nextVal = n `div` 2   
+
+-- 实现 chatToBits 将char 转换成Bits
+charToBits :: Char -> Bits
+charToBits char = intToBits' (fromEnum char) 
