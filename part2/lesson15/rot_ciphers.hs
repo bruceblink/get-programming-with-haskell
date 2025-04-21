@@ -148,3 +148,26 @@ applyOTP pad plaintext = map bitsToChar bitList
 encoderDecoder :: String -> String
 encoderDecoder = applyOTP myPad
 
+-- 创建密码（Cipher）类
+class Cipher a where
+    encode :: a -> String -> String
+    decode :: a -> String -> String
+
+-- 定义 Rot类型
+data Rot = Rot
+
+-- Rot 实现 Cipher
+instance Cipher Rot where
+    encode Rot text = rotEncoder text
+    decode Rot text = rotDecoder text
+
+-- 定义密码本类型
+data OneTimePad = OTP String
+
+-- oneTimePad 实现 Cipher
+instance Cipher OneTimePad where
+    encode (OTP pad) text = applyOTP pad text
+    decode (OTP pad) text = applyOTP pad text
+
+myOTP :: OneTimePad
+myOTP = OTP (cycle [minBound .. maxBound])
