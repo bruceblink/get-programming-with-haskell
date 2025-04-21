@@ -171,3 +171,11 @@ instance Cipher OneTimePad where
 
 myOTP :: OneTimePad
 myOTP = OTP (cycle [minBound .. maxBound])
+
+-- 定义 线性同余发射器
+prng :: Int -> Int -> Int -> Int -> Int 
+prng a b maxNumber seed = (a*seed + b) `mod` maxNumber
+
+-- 线性同余发射器示例
+examplePRNG :: Int -> Int
+examplePRNG  = prng 1337 7 100
