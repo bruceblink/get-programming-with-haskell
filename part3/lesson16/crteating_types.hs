@@ -20,13 +20,13 @@ struct book {
 -- data Book = Author String String Int
 
 -- 使用record语法展示与C结构体的相似性
-data Book = Book {
+{- data Book = Book {
     author :: AuthorName ,
     isbn   :: String,
     title  :: String,
     year   :: String,
     price  :: Double
-}
+} -}
 
 data AuthorName = AuthorName {
     first_name :: String,
@@ -97,3 +97,43 @@ hpLovecraft = AuthorCreator
                 (Author
                     (TwoInitialsWithLast 'H' 'P' "Lovecraft"))
 -- 
+
+-----  整合 bookstore
+
+data Book = Book {
+    author :: Creator , 
+    isbn :: String , 
+    bookTitle :: String , 
+    bookYear :: Int , 
+    bookPrice :: Double 
+}
+
+-- 定义 VinylRecord类型
+data VinylRecord = VinylRecord {
+    artist :: Creator , 
+    recordTitle :: String , 
+    recordYear :: Int , 
+    recordPrice :: Double 
+}
+
+-- 定义 StoreItem
+-- data StoreItem = BookItem Book | RecordItem VinylRecord
+
+-- 定义 CollectibleToy
+data CollectibleToy = CollectibleToy {
+    name :: String, 
+    descrption :: String , 
+    toyPrice :: Double 
+}
+-- 添加 CollectibleToy
+data StoreItem = BookItem Book
+    | RecordItem VinylRecord
+    | ToyItem CollectibleToy
+
+
+-- 一个使用带有价格函数的 StoreItem 类型的示例：
+price :: StoreItem -> Double 
+price (BookItem book) = bookPrice book 
+price (RecordItem record) = recordPrice record 
+price (ToyItem toy) = toyPrice toy
+
