@@ -1,4 +1,5 @@
 module Lesson16 where
+import Data.Monoid (Last)
 
 -- C语言中的积类型
 {- struct author_name {
@@ -69,3 +70,30 @@ public class VinylRecord extends StoreItem{
     double price;
 } -}
 
+-- 通用的和类型
+data Bool = False | True
+
+-- 使用和类型给名称建模
+type FirstName = String
+type LastName = String
+type MiddleName = String
+
+{- data Name = Name FirstName LastName
+          | NameWithMiddle FirstName MiddleName LastName -}
+
+-- 一个 `Creator` 类型，它可以是 `Author` 也可以是 `Artist`。
+data Creator = AuthorCreator Author | ArtistCreator Artist
+data Author = Author Name
+data Artist = Person Name | Band String
+
+-- 出现单字符H.P. Lovecraft这种的
+data Name = Name FirstName LastName
+    | NameWithMiddle FirstName MiddleName LastName 
+    | TwoInitialsWithLast Char Char LastName
+
+-- H.P. Lovecraft
+hpLovecraft :: Creator 
+hpLovecraft = AuthorCreator 
+                (Author
+                    (TwoInitialsWithLast 'H' 'P' "Lovecraft"))
+-- 
