@@ -40,3 +40,17 @@ transform  f (Triple x y z) = Triple (f x) (f y) (f z)
 transformedInitials :: Initials
 transformedInitials = transform toLower initials -}
 
+-- 定义自己的list
+data List a = Empty | Cons a (List a) deriving Show
+
+
+itemCount1 :: (String,Int)
+itemCount1 = ("Erasers",25)
+itemCount2 :: (String,Int)
+itemCount2 = ("Pencils",25)
+itemCount3 :: (String,Int)
+itemCount3 = ("Pens",13)
+
+itemInventory :: [(String,Int)]
+itemInventory = [itemCount1,itemCount2,itemCount3]
+
