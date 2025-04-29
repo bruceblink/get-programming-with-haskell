@@ -1,24 +1,25 @@
+{-# LANGUAGE OverloadedStrings #-}
 import System.IO
-import GHC.Internal.System.Environment (getArgs)
+import System.Environment
+import qualified Data.Text as T
+import qualified Data.Text.IO as TI
 
-getCounts :: String -> (Int, Int, Int)
+getCounts :: T.Text -> (Int, Int, Int)
 getCounts input = (charCount, wordCount, lineCount)
   where
-    charCount = length input
-    wordCount = (length . words) input
-    lineCount = (length . lines) input
+    charCount = T.length input
+    wordCount = (length . T.words) input
+    lineCount = (length . T.lines) input
 
-countsText :: (Int, Int, Int) -> String
-countsText (cc, wc, lc) = unwords ["chars: ", show cc , " words: ", show wc , " lines: ", show lc]
+countsText :: (Int, Int, Int) -> T.Text
+countsText (cc, wc, lc) = T.pack (unwords ["chars: ", show cc , " words: ", show wc , " lines: ", show lc])
 
 main :: IO ()
 main = do
   args <- getArgs
   let fileName = head args
-  file <- openFile fileName ReadMode
-  input <- hGetContents file
+  input <- TI.readFile fileName
   let summary = (countsText . getCounts) input
-  putStrLn summary
-  hClose file
-  appendFile "stats.dat" (mconcat [fileName, " ", summary, "\n"])
---- 修复了求值错误的 main 函数
+  TI.appendFile "stats.dat"
+                (mconcat [(T.pack fileName), " ", summary, "\n"])
+  TI.putStrLn summary
