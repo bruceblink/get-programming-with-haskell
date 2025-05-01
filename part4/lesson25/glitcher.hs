@@ -7,6 +7,7 @@
 import System.Environment
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as BC
+import System.Random
 
 main :: IO ()
 main = do
@@ -17,3 +18,29 @@ main = do
   let glitchedFileName = mconcat ["glitched_",fileName]
   BC.writeFile glitchedFileName glitched
   print "all done"
+
+-- intToChar 从 Int 创建一个有效的字节
+intToChar :: Int -> Char
+intToChar int = toEnum safeInt
+  where safeInt = int `mod` 255
+
+-- intToBC 接受一个 Int 并返回一个单字符 ByteString
+intToBC :: Int -> BC.ByteString
+intToBC int = BC.pack [intToChar int]
+
+-- replaceByte 删除一个字节并用一个新字节替换它
+replaceByte :: Int -> Int -> BC.ByteString -> BC.ByteString
+replaceByte loc charVal bytes = mconcat [before,newChar,after]
+  where (before,rest) = BC.splitAt loc bytes
+        after = BC.drop 1 rest
+        newChar = intToBC charVal
+
+
+-- randomReplaceByte 将随机数应用于 replaceByte
+
+randomReplaceByte :: BC.ByteString -> IO BC.ByteString
+randomReplaceByte bytes = do
+  let bytesLength = BC.length bytes
+  location <- randomRIO (1,bytesLength)
+  charVal <- randomRIO (0,255)
+  return (replaceByte location charVal bytes)
