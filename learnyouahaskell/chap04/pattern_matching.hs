@@ -37,3 +37,7 @@ calcBmis xs = [bmi w h | (w, h) <- xs]
 -- 计算BMI使用let
 calcBmis_let :: (RealFloat a) => [(a, a)] -> [a]
 calcBmis_let xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+
+-- 最简单的模式匹配
+customGreeting "George" = "Oh, hey George!"
+customGreeting name = "Hello, " <> name
