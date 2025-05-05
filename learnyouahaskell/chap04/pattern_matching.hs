@@ -32,3 +32,8 @@ initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
 calcBmis :: (RealFloat a) => [(a, a)] -> [a]
 calcBmis xs = [bmi w h | (w, h) <- xs]
     where bmi weight height = weight / height ^ 2
+-- 使用示例 calcBmis [(80, 1.9), (90, 1.8)]
+
+-- 计算BMI使用let
+calcBmis_let :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis_let xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
