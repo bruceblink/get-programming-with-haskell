@@ -43,3 +43,13 @@ elem' a (x:xs)
     | otherwise = elem' a xs
 
 -- 用法示例 elem' 3 [1,2,3,4,5]  -- 返回 True
+
+-- 添加快速排序算法
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) = 
+    let smallerSorted = quicksort [a | a <- xs, a <= x]
+        biggerSorted = quicksort [a | a <- xs, a > x]
+    in smallerSorted ++ [x] ++ biggerSorted
+
+-- 用法示例 quicksort [3,1,7,5,9,8] -- 返回 [1,3,5,7,8,9]
