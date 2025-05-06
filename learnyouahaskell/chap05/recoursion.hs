@@ -35,4 +35,11 @@ zip' [] _ = []
 zip' (x:xs) (y:ys) = (x, y):zip' xs ys
 -- 用法示例：zip' [1,2,3] [4,5,6]  -- 返回 [(1,4),(2,5),(3,6)]
 
---
+-- 自定义elem
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' a [] = False
+elem' a (x:xs)
+    | a == x = True
+    | otherwise = elem' a xs
+
+-- 用法示例 elem' 3 [1,2,3,4,5]  -- 返回 True
