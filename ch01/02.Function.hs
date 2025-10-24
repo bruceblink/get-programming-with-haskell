@@ -6,6 +6,9 @@ multiply :: Int -> Int -> Int
 multiply x y = x * y
 
 makeGreeting salutation person = salutation <> ", " <> person <> "!"
+
+-- 调用 makeGreeting
+greeting = makeGreeting "Hello" "George" -- "Hello, George!"
 -- --- IGNORE ---       
 -- 以上代码定义了两个函数 add 和 multiply，分别用于加法和乘法运算。
 -- --- IGNORE ---
