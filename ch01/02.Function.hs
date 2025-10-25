@@ -56,5 +56,16 @@ greetBob = (`makeGreeting` "Bob")  -- "Hello, Bob!"
 a = greetBob "Hello"  -- "Hello, Bob!"
 b = greetBob "Hi"     -- "Hi, Bob!"
 
+-- flip 函数的实用方法，可以仅应用函数的第二个参数
+flipGreetBob = flip makeGreeting "Bob"
+c = flipGreetBob "Hello"  -- "Bob, Hello!"
+
+sayThree a b c = a <> ", " <> b <> ", " <> c <> "!"
+sayThreeToABC = sayThree "Alice" "Bob" "Charlie" -- "Alice, Bob, Charlie!"
+
+-- 使用 flip 调用 sayThree
+flipSayThreeToCAB = flip sayThree "Alice" "Bob" "Charlie" -- "Charlie, Alice, Bob!"
+-- 进一步翻转参数顺序 ,翻转第二个和第三个参数
+sayThreeToACB = flip (sayThree "Alice") "Bob" "Charlie" -- "Alice, Charlie, Bob!"
 
 main = print (add 3 5, multiply 4 6)  -- (8, 24)
