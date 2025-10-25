@@ -48,6 +48,13 @@ halfOfTen = half 10  -- 5.0
 twice = (*2)  -- 部分应用函数，固定乘数为2
 twiceOfSeven = twice 7  -- 14
 
+-- 将普通函数转换为中缀函数
+infixAdd x y = x `add` y  -- 使用中缀形式调用 add
+infixAddResult = infixAdd 4 6  -- 10
+
+greetBob = (`makeGreeting` "Bob")  -- "Hello, Bob!"
+a = greetBob "Hello"  -- "Hello, Bob!"
+b = greetBob "Hi"     -- "Hi, Bob!"
 
 
 main = print (add 3 5, multiply 4 6)  -- (8, 24)
