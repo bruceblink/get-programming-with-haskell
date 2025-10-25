@@ -68,4 +68,26 @@ flipSayThreeToCAB = flip sayThree "Alice" "Bob" "Charlie" -- "Charlie, Alice, Bo
 -- 进一步翻转参数顺序 ,翻转第二个和第三个参数
 sayThreeToACB = flip (sayThree "Alice") "Bob" "Charlie" -- "Alice, Charlie, Bob!"
 
+-- 组合函数 Composing Functions
+-- 首先定义基本函数
+addOne num = num + 1
+timesTwo num = num * 2
+squared num = num * num
+minusFive num = num - 5
+
+-- 基本函数调用
+result1 = addOne 1 -- 2
+result2 = timesTwo result1 -- 4
+result3 = squared result2 -- 16
+-- 通过各个阶段的函数执行结果 计算最终结果
+finalResult = minusFive result3 -- 11
+
+-- 等价于下面的使用组合函数计算的方式
+finalResult2 = minusFive (squared (timesTwo (addOne 1))) -- 11
+
+-- 提取出这个finalResult2计算方式的函数
+finalResultFun num = minusFive (squared (timesTwo (addOne num)))
+-- 调用 finalResultFun 与 finalResult2的计算结果相同
+f = finalResultFun 1 -- 11
+
 main = print (add 3 5, multiply 4 6)  -- (8, 24)
