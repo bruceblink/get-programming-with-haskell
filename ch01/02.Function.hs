@@ -42,4 +42,12 @@ greetingForBob = greetPerson "Bob"  -- "Hello, Bob!"
 enthusiasticGreet salutation person = makeGreeting (salutation <> "!") person
 enthusiasticGreetingForEve = enthusiasticGreet "Hi" "Eve"  -- "Hi!, Eve!"
 
+-- 中缀函数的部分应用
+half = (/2)  -- 部分应用函数，固定除数为2
+halfOfTen = half 10  -- 5.0
+twice = (*2)  -- 部分应用函数，固定乘数为2
+twiceOfSeven = twice 7  -- 14
+
+
+
 main = print (add 3 5, multiply 4 6)  -- (8, 24)
