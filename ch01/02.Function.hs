@@ -90,4 +90,8 @@ finalResultFun num = minusFive (squared (timesTwo (addOne num)))
 -- 调用 finalResultFun 与 finalResult2的计算结果相同
 f = finalResultFun 1 -- 11
 
+addAB a b = a + b
+
+sumAB = addAB (addAB 1 2) (addAB 3 4) -- addAB 3 7 = 10
+
 main = print (add 3 5, multiply 4 6)  -- (8, 24)
