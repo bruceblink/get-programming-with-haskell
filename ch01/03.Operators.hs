@@ -17,3 +17,25 @@ infixl 5 <->
 -- 使用 <-> 操作符进行字符串连接
 greeting :: String
 greeting = "Hello" <-> "World"  -- "Hello - World"
+
+-- 操作符优先级和结合性示例
+nine = 1 +++ 2 * 3  -- (1 + 2) * 3 = 9，默认情况下自定义的 +++ 的优先级高于 *
+-- 使用 :info 命令查看操作符和类型类的信息
+{- ghci> :info (+++)
+(+++) :: Num a => a -> a -> a   -- Defined at 03.Operators.hs:3:1
+infixl 9 +++
+ghci> :info (+)  
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  ...
+        -- Defined in ‘GHC.Internal.Num’
+infixl 6 + -}
+-- 设置自定义操作符的优先级和结合性
+infixl 6 +++
+-- 现在 +++ 的优先级与 + 相同，都是 6，左结合
+result3 = 1 +++ 2 * 3  -- 1 + (2 * 3) = 7
+
+-- 定义两个自定义操作符 ** 和 %%
+(**) a b = a * b
+(%%) a b = a + b
