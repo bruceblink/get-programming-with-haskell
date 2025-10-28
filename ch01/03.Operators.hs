@@ -1,4 +1,5 @@
 module Operators where
+import Prelude hiding ((**)) -- 隐藏 Prelude 中的 ** 操作符
 -- 定义自定义的加法 +++ 操作符
 (+++) a b = a + b 
 -- 使用 +++ 操作符进行加法运算
@@ -37,5 +38,7 @@ infixl 6 +++
 result3 = 1 +++ 2 * 3  -- 1 + (2 * 3) = 7
 
 -- 定义两个自定义操作符 ** 和 %%
-(**) a b = a * b
+(**) a b = a * b  -- 定义乘法操作符 使用隐藏的 Prelude 中的 **
 (%%) a b = a + b
+
+result4 = 2 ** 3 %% 4  -- (2 * 3) + 4 = 10
