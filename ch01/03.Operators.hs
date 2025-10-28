@@ -42,3 +42,9 @@ result3 = 1 +++ 2 * 3  -- 1 + (2 * 3) = 7
 (%%) a b = a + b
 
 result4 = 2 ** 3 %% 4  -- (2 * 3) + 4 = 10
+
+-- 定义操作符的优先级和结合性
+divide = (/); infixr 9 `divide`  -- 定义右结合的除法操作符
+result5 = 8 `divide` 2 `divide` 2  -- 8 / (2 / 2) = 8.0
+result6 = divide 1 2 * 3  -- (1 / 2) * 3 = 1.5
+ 
