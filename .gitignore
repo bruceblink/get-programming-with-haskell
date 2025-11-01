@@ -3,3 +3,5 @@
 *.hi
 dist*
 .vscode/
+.idea/
+*.iml
