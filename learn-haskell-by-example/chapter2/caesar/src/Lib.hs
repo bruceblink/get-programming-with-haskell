@@ -12,3 +12,8 @@ upperAlphabet = ['A' .. 'Z']
 
 digits :: Alphabet
 digits = ['0' .. '9']
+
+-- 查找字符在字母表中的索引位置
+indexOf :: Char -> [Char] -> Int
+indexOf ch [] = undefined
+indexOf ch (x:xs) = if x == ch then 0 else 1 + indexOf ch xs
