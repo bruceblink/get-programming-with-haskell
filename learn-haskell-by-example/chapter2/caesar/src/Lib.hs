@@ -17,3 +17,7 @@ digits = ['0' .. '9']
 indexOf :: Char -> [Char] -> Int
 indexOf ch [] = undefined
 indexOf ch (x:xs) = if x == ch then 0 else 1 + indexOf ch xs
+-- 定义了针对任意字母表的通用旋转函数
+alphabetRot :: Alphabet -> Int -> Char -> Char
+alphabetRot alphabet n ch =
+  alphabet !! ((indexOf ch alphabet + n) `mod` length alphabet)
