@@ -45,3 +45,15 @@ isUpper char = char `elem` upperAlphabet   -- 判断字符是否在大写字母�
 
 isDigit :: Char -> Bool
 isDigit char = char `elem` digits    -- 判断字符是否为数字
+
+-- 增加测试用例
+{- ghci> rotChar 13 'A'
+'N'
+ghci> rotChar 13 'a'
+'n'
+ghci> rotChar (-1) 'A'
+'Z'
+ghci> rotChar 10 '1'
+'1'
+ghci> rotChar 10 ' '
+' ' -}
