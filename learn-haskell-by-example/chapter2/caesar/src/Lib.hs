@@ -21,3 +21,10 @@ indexOf ch (x:xs) = if x == ch then 0 else 1 + indexOf ch xs
 alphabetRot :: Alphabet -> Int -> Char -> Char
 alphabetRot alphabet n ch =
   alphabet !! ((indexOf ch alphabet + n) `mod` length alphabet)
+
+-- 定义小写字母旋转函数
+upperRot :: Int -> Char -> Char
+upperRot n ch = alphabetRot upperAlphabet n ch
+
+lowerRot :: Int -> Char -> Char
+lowerRot n ch = alphabetRot lowerAlphabet n ch
