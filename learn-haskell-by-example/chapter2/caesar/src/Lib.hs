@@ -35,3 +35,13 @@ rotChar n ch
   | isLower ch = lowerRot n ch      -- #1 小写字母则转换
   | isUpper ch = upperRot n ch      -- #2 大写字母则抓换
   | otherwise  = ch                 -- #3 其他字符不变
+
+
+isLower :: Char -> Bool
+isLower char = char `elem` lowerAlphabet   -- 判断字符是否在小写字母表中
+
+isUpper :: Char -> Bool
+isUpper char = char `elem` upperAlphabet   -- 判断字符是否在大写字母表中 
+
+isDigit :: Char -> Bool
+isDigit char = char `elem` digits    -- 判断字符是否为数字
