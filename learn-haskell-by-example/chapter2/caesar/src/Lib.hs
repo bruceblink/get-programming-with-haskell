@@ -28,3 +28,10 @@ upperRot n ch = alphabetRot upperAlphabet n ch
 
 lowerRot :: Int -> Char -> Char
 lowerRot n ch = alphabetRot lowerAlphabet n ch
+
+-- 定义通用字符旋转函数
+rotChar :: Int -> Char -> Char
+rotChar n ch
+  | isLower ch = lowerRot n ch      -- #1 小写字母则转换
+  | isUpper ch = upperRot n ch      -- #2 大写字母则抓换
+  | otherwise  = ch                 -- #3 其他字符不变
